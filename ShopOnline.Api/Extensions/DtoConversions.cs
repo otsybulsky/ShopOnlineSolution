@@ -7,6 +7,7 @@ namespace ShopOnline.Api.Extensions
     {
         public static IEnumerable<ProductDto> ConvertToDto(this IEnumerable<Product> products, IEnumerable<ProductCategory> productCategories)
         {
+            // use LINQ
             return (from product in products
                     join productCategory in productCategories
                     on product.CategoryId equals productCategory.Id
