@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Net.Http.Headers;
 using ShopOnline.Api.Data;
 using ShopOnline.Api.Repositories.Contracts;
 
@@ -28,6 +29,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(policy =>
+    policy.WithOrigins("http://localhost:7294", "https://localhost:7294")
+    .AllowAnyMethod()
+    .WithHeaders(HeaderNames.ContentType)
+);
+
+/*app.UseCors(policy =>
+{
+    policy
+        .SetIsOriginAllowed(origin => true)
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials();
+});*/
 
 app.UseHttpsRedirection();
 
