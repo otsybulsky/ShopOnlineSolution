@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShopOnline.Api.Data;
 using ShopOnline.Api.Entities;
+using ShopOnline.Api.Repositories.Contracts;
 
-namespace ShopOnline.Api.Repositories.Contracts
+namespace ShopOnline.Api.Repositories
 {
     public class ProductRepository : IProductRepository
     {
