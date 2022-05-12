@@ -55,7 +55,7 @@ namespace ShopOnline.Api.Repositories
         {
             var item = await (from cart in shopOnlineDbContext.Carts
                           join cartItem in shopOnlineDbContext.CartItems
-                          on cart.Id equals cartItem.Id
+                          on cart.Id equals cartItem.CartId
                           where cart.Id == id
                           select new CartItem
                           {
@@ -72,7 +72,7 @@ namespace ShopOnline.Api.Repositories
         {
             return await (from cart in shopOnlineDbContext.Carts
                           join cartItem in shopOnlineDbContext.CartItems
-                          on cart.Id equals cartItem.Id
+                          on cart.Id equals cartItem.CartId
                           where cart.UserId == userId
                           select new CartItem
                           {

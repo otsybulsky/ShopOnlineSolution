@@ -53,7 +53,7 @@ namespace ShopOnline.Api.Extensions
         {
             return (from cartItem in cartItems
                     join product in products
-                    on cartItem.Id equals product.Id
+                    on cartItem.ProductId equals product.Id
                     select BuildCartItemDto(cartItem, product)).ToList();
         }
 
