@@ -24,14 +24,13 @@ namespace ShopOnline.Api.Controllers
             try
             {
                 var products = await productRepository.GetItems();
-                var productCategories = await productRepository.GetCategories();
 
-                if (products == null || productCategories == null)
+                if (products == null)
                 {
                     return NotFound();
                 } else
                 {
-                    var productDtos = products.ConvertToDto(productCategories);
+                    var productDtos = products.ConvertToDto();
 
                     return Ok(productDtos);
                 }
@@ -54,10 +53,8 @@ namespace ShopOnline.Api.Controllers
                     return BadRequest();
                 }
                 else
-                {
-                    var category = await productRepository.GetCategory(product.CategoryId);
-                     
-                    var productDto = product.ConvertToDto(category);
+                {    
+                    var productDto = product.ConvertToDto();
 
                     return Ok(productDto);
                 }
@@ -91,11 +88,12 @@ namespace ShopOnline.Api.Controllers
             try
             {
                 var items = await productRepository.GetItemsByCategory(categoryId);
-                var category = await productRepository.GetCategory(categoryId);
-                
-                var categories = Enumerable.Repeat(category, 1);
 
-                var dtos = items.ConvertToDto(categories);
+                /*var category = await productRepository.GetCategory(categoryId);                
+                var categories = Enumerable.Repeat(category, 1);
+                var dtos = items.ConvertToDto(categories);*/
+
+                var dtos = items.ConvertToDto();
 
                 return Ok(dtos);
             }

@@ -5,7 +5,7 @@ namespace ShopOnline.Api.Extensions
 {
     public static class DtoConversions
     {
-        private static ProductDto BuildProductDto(Product product, ProductCategory productCategory)
+        private static ProductDto BuildProductDto(Product product)
         {
             return new ProductDto
             {
@@ -15,22 +15,25 @@ namespace ShopOnline.Api.Extensions
                 ImageURL = product.ImageURL,
                 Price = product.Price,
                 Qty = product.Qty,
-                CategoryId = product.CategoryId,
-                CategoryName = productCategory.Name
+                CategoryId = product.ProductCategory.Id,
+                CategoryName = product.ProductCategory.Name
             };
         }
-        public static IEnumerable<ProductDto> ConvertToDto(this IEnumerable<Product> products, IEnumerable<ProductCategory> productCategories)
+        public static IEnumerable<ProductDto> ConvertToDto(this IEnumerable<Product> products)
         {
-            // use LINQ 
+            /*// use LINQ 
             return (from product in products
                     join productCategory in productCategories
                     on product.CategoryId equals productCategory.Id
-                    select BuildProductDto(product, productCategory)).ToList();
+                    select BuildProductDto(product, productCategory)).ToList();*/
+
+            return (from product in products                    
+                    select BuildProductDto(product)).ToList();
         }
 
-        public static ProductDto ConvertToDto(this Product product, ProductCategory productCategory)
+        public static ProductDto ConvertToDto(this Product product)
         {            
-            return BuildProductDto(product, productCategory);
+            return BuildProductDto(product);
         }
 
         private static CartItemDto BuildCartItemDto(CartItem cartItem, Product product)
