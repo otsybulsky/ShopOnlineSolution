@@ -14,11 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContextPool<ShopOnlineDbContext>(options => 
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("ShopOnlineConnection")
-    )
-);
+builder.Services.AddDbContext<ShopOnlineDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShopOnlineConnection"))); // AddDbContextPool doesn't allow multiple constructors
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();

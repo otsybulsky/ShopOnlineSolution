@@ -5,15 +5,29 @@ namespace ShopOnline.Api.Data
 {
     public class ShopOnlineDbContext: DbContext
     {
-        public ShopOnlineDbContext(DbContextOptions<ShopOnlineDbContext> options ):base(options)
+        
+        private readonly Action<ShopOnlineDbContext, ModelBuilder> modelCustomizer;
+        
+        public ShopOnlineDbContext(DbContextOptions<ShopOnlineDbContext> options) : base(options)
         {
 
         }
+
+        public ShopOnlineDbContext(DbContextOptions<ShopOnlineDbContext> options, Action<ShopOnlineDbContext, ModelBuilder> modelCustomizer = null):base(options)
+        {            
+            this.modelCustomizer = modelCustomizer;
+        }        
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-			DataHelper.SeedDatabase(modelBuilder);
+            if (modelCustomizer != null)
+            {
+                modelCustomizer(this, modelBuilder);
+            } else
+            {
+                base.OnModelCreating(modelBuilder);
+                DataHelper.SeedDatabase(modelBuilder);
+            }
 		}
 		
 		public DbSet<Cart> Carts { get; set; }
