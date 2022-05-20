@@ -25,7 +25,7 @@ namespace ShopOnline.Api.Controllers
             {
                 var products = await productRepository.GetItems();
 
-                if (products == null)
+                if (products == null || products.Count() == 0)
                 {
                     return NotFound();
                 } else
@@ -35,9 +35,9 @@ namespace ShopOnline.Api.Controllers
                     return Ok(productDtos);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving data from the database: {ex.Message}");
             }
         }
 
@@ -59,9 +59,9 @@ namespace ShopOnline.Api.Controllers
                     return Ok(productDto);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving data from the database: {ex.Message}");
             }
         }
 

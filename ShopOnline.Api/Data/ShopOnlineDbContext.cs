@@ -6,11 +6,11 @@ namespace ShopOnline.Api.Data
     public class ShopOnlineDbContext: DbContext
     {
         
-        private readonly Action<ShopOnlineDbContext, ModelBuilder> modelCustomizer;
-        
+        private readonly Action<ShopOnlineDbContext, ModelBuilder> modelCustomizer;        
+
         public ShopOnlineDbContext(DbContextOptions<ShopOnlineDbContext> options) : base(options)
         {
-
+            
         }
 
         public ShopOnlineDbContext(DbContextOptions<ShopOnlineDbContext> options, Action<ShopOnlineDbContext, ModelBuilder> modelCustomizer = null):base(options)
@@ -19,13 +19,14 @@ namespace ShopOnline.Api.Data
         }        
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {            
             if (modelCustomizer != null)
             {
                 modelCustomizer(this, modelBuilder);
             } else
             {
                 base.OnModelCreating(modelBuilder);
+                
                 DataHelper.SeedDatabase(modelBuilder);
             }
 		}
