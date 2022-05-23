@@ -30,6 +30,10 @@ namespace ShopOnline.Api.Testing.UnitTests.ProductControllerTests
         {
             await context.Database.ExecuteSqlRawAsync("drop table Products");
         }
+        private async Task DropCategories(ShopOnlineDbContext context)
+        {
+            await context.Database.ExecuteSqlRawAsync("drop table ProductCategories");
+        }
 
         private async Task<ProductController> GetProductController(bool emptyRepository = false, bool dropTable = false)
         {
@@ -43,6 +47,7 @@ namespace ShopOnline.Api.Testing.UnitTests.ProductControllerTests
             if (dropTable)
             {
                 await DropProducts(context);
+                await DropCategories(context);
             }
 
             return new ProductController(repo);

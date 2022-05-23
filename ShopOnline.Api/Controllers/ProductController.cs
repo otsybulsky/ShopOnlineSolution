@@ -75,9 +75,9 @@ namespace ShopOnline.Api.Controllers
                 var dtos = categories.ConvertToDto();
                 return Ok(dtos);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving data from the database: {ex.Message}");
             }
         }
 
@@ -97,9 +97,9 @@ namespace ShopOnline.Api.Controllers
 
                 return Ok(dtos);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving data from the database: {ex.Message}");
             }
         }
     }
