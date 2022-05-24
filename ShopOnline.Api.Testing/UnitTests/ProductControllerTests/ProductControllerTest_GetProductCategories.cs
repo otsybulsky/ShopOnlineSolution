@@ -35,7 +35,7 @@ namespace ShopOnline.Api.Testing.UnitTests.ProductControllerTests
             string expectedResult = "Error retrieving data from the database: SQLite Error 1: 'no such table: ProductCategories'.";
 
             Assert.Equal((int)HttpStatusCode.InternalServerError, result.StatusCode);
-            Assert.Equal(actualResult, expectedResult);
+            Assert.Equal(expectedResult, actualResult);
         }
 
         [Fact]
@@ -53,8 +53,8 @@ namespace ShopOnline.Api.Testing.UnitTests.ProductControllerTests
             var actualCategoryId = actualCategoryIds.FirstOrDefault();
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-            Assert.Equal(actualCategoryIds.Count(), 1);
-            Assert.Equal(actualCategoryId, expectedCategoryId);            
+            Assert.Equal(1, actualCategoryIds.Count());
+            Assert.Equal(expectedCategoryId, actualCategoryId);            
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace ShopOnline.Api.Testing.UnitTests.ProductControllerTests
             IEnumerable<ProductDto> products = (IEnumerable<ProductDto>)result.Value;
                         
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-            Assert.Equal(products.Count(), 0);            
+            Assert.Equal(0, products.Count());            
         }
 
         [Fact]
@@ -83,7 +83,7 @@ namespace ShopOnline.Api.Testing.UnitTests.ProductControllerTests
             string expectedResult = "Error retrieving data from the database: SQLite Error 1: 'no such table: Products'.";
 
             Assert.Equal((int)HttpStatusCode.InternalServerError, result.StatusCode);
-            Assert.Equal(actualResult, expectedResult);
+            Assert.Equal(expectedResult, actualResult);
         }
     }
 }

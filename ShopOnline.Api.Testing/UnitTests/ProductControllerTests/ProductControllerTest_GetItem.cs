@@ -26,7 +26,7 @@ namespace ShopOnline.Api.Testing.UnitTests.ProductControllerTests
 
 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-            Assert.Equal(actualProductStr, expectedProductStr);
+            Assert.Equal(expectedProductStr, actualProductStr);
 
         }
 
@@ -51,7 +51,7 @@ namespace ShopOnline.Api.Testing.UnitTests.ProductControllerTests
             string expectedResult = "Error retrieving data from the database: SQLite Error 1: 'no such table: Products'.";
 
             Assert.Equal((int)HttpStatusCode.InternalServerError, result.StatusCode);
-            Assert.Equal(actualResult, expectedResult);
+            Assert.Equal(expectedResult, actualResult);
         }
     }
 }
