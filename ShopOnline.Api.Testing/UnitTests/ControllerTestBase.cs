@@ -5,7 +5,7 @@ using System.Data.Common;
 using System.Text.Json;
 using Xunit.Abstractions;
 
-namespace ShopOnline.Api.Testing.UnitTests.ProductControllerTests
+namespace ShopOnline.Api.Testing.UnitTests
 {
     public class ControllerTestBase : IDisposable
     {

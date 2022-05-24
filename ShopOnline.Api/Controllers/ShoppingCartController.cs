@@ -27,14 +27,14 @@ namespace ShopOnline.Api.Controllers
             {
                 var cartItems = await shoppingCartRepository.GetItems(userId);
 
-                if (cartItems == null)
+                if (cartItems == null || cartItems.Count() == 0)
                 {
                     return NoContent();
                 }
 
                 var products = await productRepository.GetItems();
 
-                if (products == null)
+                if (products == null || products.Count() == 0)
                 {
                     throw new Exception("No products exist in the system");
                 }
@@ -91,14 +91,9 @@ namespace ShopOnline.Api.Controllers
 
                 var product = await productRepository.GetItem(newCartItem.ProductId);
 
-                if (product == null)
-                {
-                    throw new Exception($"Product not found: {newCartItem.ProductId}");
-                }
-
                 var newCartItemDto = newCartItem.ConvertToDto(product);
 
-                return CreatedAtAction(nameof(GetItem), new {id =  newCartItemDto.Id}, newCartItemDto);
+                return CreatedAtAction(nameof(GetItem), new {id = newCartItemDto.Id}, newCartItemDto);
             }
             catch (Exception ex)
             {
