@@ -12,11 +12,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6C843768-4B66-4903-9E8A-60D1614149C2}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		RunAPI.bat = RunAPI.bat
+		RunWEB.bat = RunWEB.bat
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Api.Testing", "ShopOnline.Api.Testing\ShopOnline.Api.Testing.csproj", "{9A54532C-2404-4E7C-8894-041B72621700}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopOnline.Testing.UI.WebDriver", "ShopOnline.Testing.UI.WebDriver\ShopOnline.Testing.UI.WebDriver.csproj", "{ABA693A1-FB63-44FB-A334-015CB3BAC9E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopOnline.Testing.UI.WebDriver", "ShopOnline.Testing.UI.WebDriver\ShopOnline.Testing.UI.WebDriver.csproj", "{ABA693A1-FB63-44FB-A334-015CB3BAC9E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
